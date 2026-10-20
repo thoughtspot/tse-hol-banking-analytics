@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bankalytics — ThoughtSpot Banking Analytics Hands-On Lab
 
-## Getting Started
+Bankalytics is a sample banking analytics portal for ThoughtSpot hands-on labs. It covers credit cards, checking, savings, and lending, and it's built with Next.js, React, and the ThoughtSpot Visual Embed SDK.
 
-First, run the development server:
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) 20.9 or later (includes `npm`)
+- [Git](https://git-scm.com/downloads)
+- A code editor, such as [VS Code](https://code.visualstudio.com/)
+- Access to a ThoughtSpot instance
+
+Check your versions:
+
+```bash
+node --version
+npm --version
+git --version
+```
+
+## Download
+
+Clone the repository:
+
+```bash
+git clone https://github.com/thoughtspot/tse-hol-banking-analytics.git
+cd tse-hol-banking-analytics
+```
+
+If you don't have Git, use **Code → Download ZIP** on the GitHub repository page, unzip the file, and open a terminal in the unzipped folder.
+
+## Install
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+## Configure
+
+Create a `.env.local` file in the project root, and set it to the URL of your ThoughtSpot instance:
+
+```bash
+NEXT_PUBLIC_THOUGHTSPOT_HOST=https://your-instance.thoughtspot.cloud
+```
+
+`.env.local` is ignored by Git. Don't commit it.
+
+## Run
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser. When you edit a file, the page reloads automatically.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To stop the server, press `Ctrl+C` in the terminal.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Other commands
 
-## Learn More
+| Command         | Description                                  |
+| --------------- | -------------------------------------------- |
+| `npm run build` | Create a production build                    |
+| `npm run start` | Serve the production build (run `build` first) |
+| `npm run lint`  | Run ESLint                                   |
 
-To learn more about Next.js, take a look at the following resources:
+## Troubleshooting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Port 3000 is already in use:** run `npm run dev -- -p 3001` and open `http://localhost:3001`.
+- **`npm install` fails:** confirm that you're on Node.js 20.9 or later, delete `node_modules`, and run `npm install` again.

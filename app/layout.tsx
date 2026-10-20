@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   },
   description:
     "Analytics across credit cards, checking, savings, and lending for the bank.",
+  icons: {
+    icon: "/ts.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
