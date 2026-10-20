@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ComponentType, SVGProps } from "react";
+import BanksyBar from "./components/banksy/BanksyBar";
 import {
   ArrowRightIcon,
   BriefcaseIcon,
@@ -77,6 +78,7 @@ const LINES_OF_BUSINESS: {
 export default function Home() {
   return (
     <>
+      <BanksyBar />
       <section className="relative overflow-hidden bg-gradient-to-br from-navy-950 via-navy-900 to-navy-700 text-white">
         <div
           aria-hidden="true"

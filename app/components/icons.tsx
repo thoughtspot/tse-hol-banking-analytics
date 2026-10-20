@@ -121,3 +121,20 @@ export function SendIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function ChatIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 3.5V17h0A1.5 1.5 0 0 1 4 15.5v-9Z" />
+      <path d="M8.5 9.5h7M8.5 12.5h4.5" />
+    </Icon>
+  );
+}
+
+export function CloseIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M6 6l12 12M18 6 6 18" />
+    </Icon>
+  );
+}
