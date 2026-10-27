@@ -9,6 +9,8 @@ import "server-only";
 
 const TOKEN_PATH = "/api/token";
 const REQUEST_TIMEOUT_MS = 10_000;
+// Token lifetime requested from the service (it accepts 60 to 3600 seconds).
+const TOKEN_TTL_SECONDS = 50 * 60;
 // Refresh a cached token this long before it expires.
 const EXPIRY_MARGIN_MS = 60_000;
 
@@ -81,6 +83,7 @@ async function requestToken(config: TokenServiceConfig): Promise<ThoughtSpotToke
   const params = new URLSearchParams({
     instance: config.instance,
     username: config.username,
+    ttl: String(TOKEN_TTL_SECONDS),
   });
   if (config.org) params.set("org", config.org);
 
