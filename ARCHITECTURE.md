@@ -15,7 +15,7 @@ Both paths authenticate to ThoughtSpot with tokens issued by the token service, 
 | **Token service** (`ts-embed-lab-token-service`) | Checks that a caller is a valid lab user, then mints a ThoughtSpot trusted-auth token for them. It is the only component that holds the ThoughtSpot secret key. | Shared lab service |
 | **ThoughtSpot** | The analytics platform. It hosts the banking data model, Liveboards, and Spotter, and it issues tokens to the token service. | ThoughtSpot Cloud instance |
 | **Spotter MCP server** | Exposes ThoughtSpot search and Spotter analysis as Model Context Protocol (MCP) tools. Calls it receives run against ThoughtSpot as the user who owns the bearer token. | `agent.thoughtspot.app` (hosted by ThoughtSpot) |
-| **LLM service** | A LiteLLM proxy that fronts the model behind Banksy (Claude). The app sends it messages and tool definitions in the Anthropic Messages format. | Shared lab service |
+| **LLM service** (`hol-ai-gateway`) | A LiteLLM proxy that fronts the model behind Banksy (Claude). The app sends it messages and tool definitions in the Anthropic Messages format. It holds the provider keys; the app holds only a shared gateway key. | Shared lab service (Vercel) |
 
 ## System overview
 
@@ -131,8 +131,11 @@ The Bankalytics app reads these settings from `.env.local`. See `.env.example` f
 | Variable | Used for |
 | --- | --- |
 | `NEXT_PUBLIC_THOUGHTSPOT_HOST` | ThoughtSpot instance URL (browser and server) |
-| `TS_USERNAME` | Lab user to request tokens for |
 | `TOKEN_SERVICE_URL` | Base URL of `ts-embed-lab-token-service` |
+| `TOKEN_SERVICE_API_KEY` | API key the app presents to the token service (server only) |
+| `TS_INSTANCE` | Instance name configured in the token service |
+| `TS_ORG` | Org ID configured in the token service (optional when the instance has one org) |
+| `TS_USERNAME` | Lab user to request tokens for |
 | `TS_MCP_URL` | Spotter MCP server endpoint |
 | `LITELLM_URL`, `LITELLM_API_KEY`, `LITELLM_MODEL`, `LITELLM_MAX_TOKENS` | LLM service connection and model settings |
 

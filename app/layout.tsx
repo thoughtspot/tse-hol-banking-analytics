@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import BanksyProvider from "./components/banksy/BanksyProvider";
 import SiteHeader from "./components/SiteHeader";
+import ThoughtSpotInit from "./components/thoughtspot/ThoughtSpotInit";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -33,6 +34,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
+        {process.env.TS_USERNAME && (
+          <ThoughtSpotInit username={process.env.TS_USERNAME} />
+        )}
         <BanksyProvider>
           <SiteHeader />
           <main className="flex flex-1 flex-col">{children}</main>
