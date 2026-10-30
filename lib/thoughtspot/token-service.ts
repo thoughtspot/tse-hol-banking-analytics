@@ -1,5 +1,7 @@
 import "server-only";
 
+import { connection } from "next/server";
+
 /**
  * Server-side client for ts-embed-lab-token-service, which mints ThoughtSpot
  * trusted-auth tokens so this app never holds the ThoughtSpot secret key.
@@ -123,9 +125,11 @@ let pending: Promise<ThoughtSpotToken> | undefined;
 /**
  * Returns a ThoughtSpot bearer token for the configured lab user, reusing the
  * cached token until it is close to expiring. Concurrent callers share one
- * in-flight request.
+ * in-flight request. Tokens are per-request credentials, so this opts the
+ * caller out of prerendering rather than baking a token into static output.
  */
 export async function getThoughtSpotToken(): Promise<ThoughtSpotToken> {
+  await connection();
   if (cached && cached.expiresAt - EXPIRY_MARGIN_MS > Date.now()) {
     return cached;
   }
