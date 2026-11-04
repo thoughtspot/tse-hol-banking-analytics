@@ -1,0 +1,1 @@
+Update the analytics page to list all of the liveboards I can see. List them as tiles with a mouse over and click effect. Show the name, description, author, and last updated time. When I click on the liveboard, I want to be taken to the liveboard in an embedded view.
