@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import BanksyProvider from "./components/banksy/BanksyProvider";
 import SiteHeader from "./components/SiteHeader";
 import ThoughtSpotInit from "./components/thoughtspot/ThoughtSpotInit";
@@ -14,6 +15,9 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+// Matches SiteHeader's height: the h-8 top bar plus the h-16 main bar.
+const HEADER_FALLBACK_CLASS = "h-24 bg-navy-900";
 
 export const metadata: Metadata = {
   title: {
@@ -38,7 +42,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <ThoughtSpotInit username={process.env.TS_USERNAME} />
         )}
         <BanksyProvider>
-          <SiteHeader />
+          <Suspense fallback={<div aria-hidden="true" className={HEADER_FALLBACK_CLASS} />}>
+            <SiteHeader />
+          </Suspense>
           <main className="flex flex-1 flex-col">{children}</main>
           <footer className="border-t border-slate-200 bg-white">
             <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-6 text-sm text-muted sm:flex-row sm:justify-between sm:px-6">
