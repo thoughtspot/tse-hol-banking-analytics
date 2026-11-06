@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { THOUGHTSPOT_CUSTOMIZATIONS } from "./customizations";
 import { markThoughtSpotInitialized } from "./sdk-ready";
 
 const TOKEN_ROUTE = "/api/thoughtspot/token";
@@ -33,6 +34,7 @@ export default function ThoughtSpotInit({ username }: { username: string }) {
         authType: AuthType.TrustedAuthTokenCookieless,
         username,
         getAuthToken,
+        customizations: THOUGHTSPOT_CUSTOMIZATIONS,
       });
       markThoughtSpotInitialized();
     });
